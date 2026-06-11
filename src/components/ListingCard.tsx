@@ -1,4 +1,4 @@
-import { MapPin, Plus, Minus, CalendarPlus, Check } from 'lucide-react';
+import { MapPin, Plus, Minus, CalendarPlus, Check, ExternalLink } from 'lucide-react';
 import type { Listing } from '../data/mockData';
 import { formatKzt } from '../lib/format';
 import { Card, Photo, SourceBadge, AiScoreBadge, cx } from './ui';
@@ -51,7 +51,16 @@ export function ListingCard({ listing, onOpen }: { listing: Listing; onOpen: () 
         </div>
       </button>
 
-      <div className="border-t border-line px-3 py-2.5">
+      <div className="grid grid-cols-2 gap-2 border-t border-line px-3 py-2.5">
+        <a
+          href={listing.sourceUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-center gap-1.5 rounded-btn border border-line bg-bg-elevated py-2 text-caption font-semibold text-text-primary transition-colors hover:border-gold/40 hover:text-gold"
+        >
+          <ExternalLink className="h-4 w-4" />
+          {listing.source === 'krisha' ? 'Krisha' : 'OLX'}
+        </a>
         <button
           onClick={() =>
             openScheduler({
@@ -63,14 +72,14 @@ export function ListingCard({ listing, onOpen }: { listing: Listing; onOpen: () 
             })
           }
           className={cx(
-            'flex w-full items-center justify-center gap-2 rounded-btn border py-2 text-caption font-semibold transition-colors',
+            'flex items-center justify-center gap-2 rounded-btn border py-2 text-caption font-semibold transition-colors',
             appointment
               ? 'border-gold/40 bg-gold/10 text-gold'
               : 'border-line bg-bg-elevated text-text-primary hover:border-gold/40',
           )}
         >
           {appointment ? <Check className="h-4 w-4" /> : <CalendarPlus className="h-4 w-4" />}
-          {appointment ? `Звонок · ${formatAppointmentDateTime(appointment)}` : 'Назначить звонок'}
+          {appointment ? formatAppointmentDateTime(appointment) : 'Звонок'}
         </button>
       </div>
     </Card>

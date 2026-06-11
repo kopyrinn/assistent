@@ -6,6 +6,7 @@ export type Platform = 'tiktok' | 'instagram';
 export interface Listing {
   id: string;
   source: Source;
+  sourceUrl: string;
   title: string;
   priceKzt: number;
   areaLabel: string;
@@ -96,6 +97,7 @@ export const listings: Listing[] = [
   {
     id: 'l1',
     source: 'krisha',
+    sourceUrl: 'https://krisha.kz/a/show/1011571958',
     title: 'Участок 3 га под производство, Талгарский р-н',
     priceKzt: 120_000_000,
     areaLabel: '3 га',
@@ -132,6 +134,7 @@ export const listings: Listing[] = [
   {
     id: 'l2',
     source: 'krisha',
+    sourceUrl: 'https://krisha.kz/a/show/1005025918',
     title: 'Промбаза 0.8 га со складами, Каскелен',
     priceKzt: 185_000_000,
     areaLabel: '0.8 га',
@@ -165,6 +168,7 @@ export const listings: Listing[] = [
   {
     id: 'l3',
     source: 'krisha',
+    sourceUrl: 'https://krisha.kz/a/show/1011741712',
     title: 'Участок 5 га под птицефабрику, Капшагай',
     priceKzt: 95_000_000,
     areaLabel: '5 га',
@@ -198,6 +202,7 @@ export const listings: Listing[] = [
   {
     id: 'l4',
     source: 'krisha',
+    sourceUrl: 'https://krisha.kz/a/show/1009370354',
     title: 'Склад 1200 м² с участком 0.3 га, Алатауский р-н',
     priceKzt: 240_000_000,
     areaLabel: '1200 м²',
@@ -226,6 +231,7 @@ export const listings: Listing[] = [
   {
     id: 'o1',
     source: 'olx',
+    sourceUrl: 'https://www.olx.kz/d/obyavlenie/yurta-prodam-vse-v-komplekte-IDqSyny.html',
     title: 'Большая юрта 8-канатная, новая, ручная работа',
     priceKzt: 4_750_000,
     areaLabel: '8 канатов',
@@ -251,6 +257,7 @@ export const listings: Listing[] = [
   {
     id: 'o2',
     source: 'olx',
+    sourceUrl: 'https://www.olx.kz/d/obyavlenie/generator-100-kvt-elektrostantsiya-dgu-IDpAj1t.html',
     title: 'Дизель-генератор 100 кВт, б/у, в рабочем состоянии',
     priceKzt: 3_200_000,
     areaLabel: '100 кВт',
@@ -276,6 +283,7 @@ export const listings: Listing[] = [
   {
     id: 'o3',
     source: 'olx',
+    sourceUrl: 'https://www.olx.kz/d/obyavlenie/konteyner-zhiloy-40f-12-0h2-4-IDqrRUV.html',
     title: 'Морской контейнер 40 фт, утеплённый, под склад',
     priceKzt: 2_100_000,
     areaLabel: '40 фт',
@@ -301,6 +309,7 @@ export const listings: Listing[] = [
   {
     id: 'o4',
     source: 'olx',
+    sourceUrl: 'https://www.olx.kz/d/obyavlenie/agregat-monoblok-holodilnyy-split-sistema-kamera-oborudovanie-IDpc84g.html',
     title: 'Холодильное оборудование для склада, моноблок',
     priceKzt: 1_450_000,
     areaLabel: '15–25 м³',
@@ -326,6 +335,7 @@ export const listings: Listing[] = [
   {
     id: 'o5',
     source: 'olx',
+    sourceUrl: 'https://www.olx.kz/d/obyavlenie/arochnyy-beskarkasnyy-sbornyy-razbornyy-angar-IDpSlq2.html',
     title: 'Металлоконструкции / ангар 12×30 м, разборный',
     priceKzt: 8_900_000,
     areaLabel: '360 м²',
@@ -354,6 +364,7 @@ export const listings: Listing[] = [
   {
     id: 'o6',
     source: 'olx',
+    sourceUrl: 'https://www.olx.kz/d/obyavlenie/pogruzchik-IDlL2pP.html',
     title: 'Спецтехника: погрузчик фронтальный, 3 т',
     priceKzt: 12_500_000,
     areaLabel: '3 т',
@@ -394,8 +405,8 @@ export const feed: FeedItem[] = [
     type: 'video',
     importance: 'important',
     eyebrow: 'ВИДЕО-РАДАР',
-    headline: 'Нашёл видео продажи участка дешевле рынка в TikTok',
-    detail: 'Извлёк из видео: 2.5 га, Каскелен, ~88 млн ₸. На 18% дешевле похожего на Krisha.',
+    headline: 'Нашёл TikTok по участку 5 га в Алатау',
+    detail: 'Извлёк из видео: ЖД тупик 300 м, логистика, склады и промышленное производство.',
     payloadId: 'v1',
   },
   {
@@ -438,7 +449,7 @@ export const weekSummary: WeekStat[] = [
 ];
 export const weekHighlights = [
   'Лучшая находка недели — участок 3 га в Талгаре, на 15–20% ниже рынка.',
-  'Видео-радар нашёл 2 участка в Каскелене дешевле аналогов на Krisha.',
+  'Видео-радар нашёл участок 5 га в Алатау с ЖД тупиком и участок 10 га в промзоне Алматы.',
   'Радар обработал 63 видео в TikTok и Instagram, релевантных — 9.',
   'Погода: благоприятное окно для выезда — четверг и вторник.',
 ];
@@ -449,46 +460,43 @@ export const videoFinds: VideoFind[] = [
     id: 'v1',
     platform: 'tiktok',
     thumbnail: 'https://picsum.photos/seed/v1/600/900',
-    authorHandle: '@jer_satu_kz',
-    views: 48200,
-    caption: 'Сатылады жер учаске 2.5 га Каскелен, бағасы келісімді. Документы готовы 🔑',
-    hashtags: ['#жерсату', '#участок', '#каскелен', '#алматы'],
+    authorHandle: '@nedvizhimostalmaty02',
+    views: 12800,
+    caption: 'Продаётся земельный участок 5 га в городе Алатау. ЖД тупик 300 м, под логистику, склады и производство.',
+    hashtags: ['#capitalestatealmaty', '#промбазаалматинскаяобласть', '#алатау', '#логистическийцентр'],
     aiRelevant: true,
-    aiVerdict: 'Похоже на продажу участка 2.5 га под производство в Каскелене. Релевантно интересам.',
+    aiVerdict: 'Реальный TikTok-ролик о продаже участка 5 га в городе Алатау. Подходит под логистику, складской комплекс или производство.',
     extracted: {
-      priceKzt: 88_000_000,
-      areaLabel: '2.5 га',
-      location: 'Каскелен',
+      areaLabel: '5 га',
+      location: 'город Алатау',
       contact: '+7 7•• ••• •• ••',
     },
-    transcript: '…участок два с половиной гектара, ровный, рядом трасса, цена восемьдесят восемь миллионов, торг есть…',
-    onScreenText: 'УЧАСТОК 2.5 ГА • КАСКЕЛЕН • 88 МЛН ₸',
+    transcript: '…продаётся земельный участок 5 гектаров в городе Алатау, собственный железнодорожный тупик 300 метров, под логистический центр…',
+    onScreenText: 'УЧАСТОК 5 ГА • АЛАТАУ • ЖД ТУПИК',
     matchedListingId: 'l2',
-    matchNote: 'Дешевле похожей промбазы на Krisha на ~18%',
-    // Реальная живая хэштег-лента TikTok по теме земли в Казахстане:
-    videoUrl: 'https://www.tiktok.com/discover/лпх-участок-в-казахстане',
+    matchNote: 'Сильная логистика: ЖД тупик и формат под складской комплекс',
+    videoUrl: 'https://www.tiktok.com/@nedvizhimostalmaty02/video/7633486219149643026',
   },
   {
     id: 'v2',
     platform: 'instagram',
     thumbnail: 'https://picsum.photos/seed/v2/600/900',
-    authorHandle: '@dalexdevelopment',
-    views: 31500,
-    caption: 'Участки в Алматинской области с коммуникациями. ИЖС / ЛПХ / Коммерция. Запись на просмотр ⤵️',
-    hashtags: ['#участки', '#алматинскаяобласть', '#земля', '#ижс'],
+    authorHandle: '@yerkebulan_alpysbayev',
+    views: 1800,
+    caption: 'Алматы | Продаётся земельный участок 10 га в промзоне. Бурундай, первая линия ул. Саина.',
+    hashtags: ['#недвижимость', '#продажаучастков', '#продажапромбаз', '#алматы'],
     aiRelevant: true,
-    aiVerdict: 'Застройщик продаёт участки с коммуникациями в Алматинской области. Релевантно.',
+    aiVerdict: 'Реальный Instagram Reel о продаже участка 10 га под промбазу и складские объекты в промышленном направлении Алматы.',
     extracted: {
-      areaLabel: 'от 10 соток',
-      location: 'Алматинская обл.',
+      areaLabel: '10 га',
+      location: 'Бурундай / Алматы',
       contact: 'Direct / WhatsApp',
     },
-    transcript: '…участки с готовыми коммуникациями, свет и вода подведены, рассрочка возможна…',
-    onScreenText: 'УЧАСТКИ С КОММУНИКАЦИЯМИ • РАССРОЧКА',
-    matchedListingId: 'l1',
-    matchNote: 'Дороже участка в Талгаре, но с готовыми коммуникациями',
-    // Реальный живой Instagram-аккаунт продаж земли в Алматинской области:
-    videoUrl: 'https://www.instagram.com/dalexdevelopment/',
+    transcript: '…продаётся земельный участок 10 гектаров в промзоне, Бурундай, первая линия улицы Саина, удобные подъездные пути…',
+    onScreenText: 'УЧАСТОК 10 ГА • ПРОМЗОНА • АЛМАТЫ',
+    matchedListingId: 'l2',
+    matchNote: 'Промзона и логистика: стоит сравнить с промбазами на Krisha',
+    videoUrl: 'https://www.instagram.com/reel/DUh982sDVxS/',
   },
   {
     id: 'v3',
@@ -531,12 +539,12 @@ export const videoAutoTags = ['#жерсату', '#участокалматы', 
 
 // Этапы обработки карточки v1
 export const videoPipeline = [
-  'Нашёл видео по #жерсату',
-  'Извлёк аудио из ролика',
+  'Нашёл TikTok по #промбазаалматинскаяобласть',
+  'Извлёк описание и аудио из ролика',
   'Распознал речь (казахский + русский)',
-  'Считал текст с кадра: «88 МЛН ₸»',
-  'Вытащил цену, площадь и локацию',
-  'Сверил с Krisha — дешевле на 18%',
+  'Считал текст с кадра: «5 ГА»',
+  'Вытащил площадь, локацию и ЖД-тупик',
+  'Сверил с Krisha — релевантно под логистику',
   'Вывод: релевантно ✓',
 ];
 
@@ -696,7 +704,7 @@ export const voiceScenarios: VoiceScenario[] = [
     command: 'Что важного за сегодня?',
     answer:
       'Три важных пункта. Первое — участок 3 га в Талгаре дешевле рынка, рекомендую посмотреть. ' +
-      'Второе — видео-радар нашёл в TikTok участок 2.5 га в Каскелене на 18% дешевле аналога. ' +
+      'Второе — видео-радар нашёл TikTok по участку 5 га в Алатау с ЖД тупиком и Reel по участку 10 га в промзоне Алматы. ' +
       'Третье — в пятницу дождь и ветер, выезд лучше в четверг.',
     resultType: 'digest',
   },
@@ -719,7 +727,7 @@ export const voiceScenarios: VoiceScenario[] = [
 export const voiceDigestLines = [
   'Доброе утро. Вот что важно сегодня.',
   'Участок 3 га в Талгаре — на 15–20% дешевле рынка. Рекомендую посмотреть.',
-  'Видео-радар нашёл в TikTok участок 2.5 га в Каскелене дешевле аналога на 18%.',
+  'Видео-радар нашёл TikTok по участку 5 га в Алатау и Reel по участку 10 га в промзоне Алматы.',
   'В пятницу дождь и ветер — выезд на объект лучше перенести на четверг.',
 ];
 
@@ -737,7 +745,7 @@ export const pushSamples: PushSample[] = [
     id: 'p2',
     importance: 'important',
     title: 'Видео-радар',
-    body: 'Нашёл в TikTok видео продажи участка дешевле рынка в Каскелене.',
+    body: 'Нашёл TikTok по участку 5 га в Алатау с ЖД тупиком под логистику.',
     target: 'video',
     payloadId: 'v1',
   },

@@ -9,8 +9,10 @@ function PlatformBadge({ platform }: { platform: VideoFind['platform'] }) {
   return (
     <span
       className={cx(
-        'inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide',
-        isTikTok ? 'bg-black/70 text-white' : 'bg-[#d6249f]/25 text-[#ff7eda]',
+        'inline-flex whitespace-nowrap rounded-full border px-2 py-1 text-[9px] font-bold uppercase leading-none tracking-[0.04em] shadow-lg backdrop-blur-md',
+        isTikTok
+          ? 'border-white/15 bg-black/75 text-white'
+          : 'border-[#ff7eda]/30 bg-gradient-to-r from-[#7c2d92]/90 to-[#d6249f]/80 text-[#ffd2ef]',
       )}
     >
       {isTikTok ? 'TikTok' : 'Instagram'}
@@ -37,14 +39,14 @@ export function VideoCard({ video, onOpen }: { video: VideoFind; onOpen: () => v
     <Card className="overflow-hidden">
       <div className="flex gap-3 p-3">
         {/* Thumbnail */}
-        <button onClick={onOpen} className="relative h-28 w-20 shrink-0 overflow-hidden rounded-xl">
+        <button onClick={onOpen} className="relative h-32 w-24 shrink-0 overflow-hidden rounded-xl">
           <Photo src={video.thumbnail} alt={video.caption} className="h-full w-full" />
           <span className="absolute inset-0 flex items-center justify-center">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/55 backdrop-blur">
               <Play className="h-4 w-4 fill-white text-white" />
             </span>
           </span>
-          <span className="absolute left-1 top-1">
+          <span className="absolute left-2 top-2">
             <PlatformBadge platform={video.platform} />
           </span>
         </button>
@@ -90,25 +92,25 @@ export function VideoCard({ video, onOpen }: { video: VideoFind; onOpen: () => v
       )}
 
       {/* Actions */}
-      <div className="flex flex-wrap items-center gap-2 border-t border-line px-3 py-2.5">
+      <div className="grid grid-cols-2 gap-2 border-t border-line p-3">
         <a
           href={video.videoUrl}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-1.5 rounded-btn bg-bg-elevated px-3 py-1.5 text-caption font-medium text-text-primary transition-colors hover:bg-gold/15 hover:text-gold"
+          className="flex h-10 items-center justify-center gap-1.5 rounded-btn border border-line bg-bg-elevated px-2 text-caption font-semibold text-text-primary transition-colors hover:border-gold/40 hover:bg-gold/15 hover:text-gold"
         >
           <ExternalLink className="h-3.5 w-3.5" /> Открыть видео
         </a>
         <button
           onClick={onOpen}
-          className="rounded-btn px-3 py-1.5 text-caption font-medium text-text-muted transition-colors hover:text-text-primary"
+          className="flex h-10 items-center justify-center rounded-btn border border-line bg-bg-elevated px-2 text-caption font-semibold text-text-primary transition-colors hover:border-gold/40 hover:text-gold"
         >
           Подробнее
         </button>
         <button
           onClick={scheduleMeeting}
           className={cx(
-            'ml-auto flex items-center gap-1.5 rounded-btn border px-3 py-1.5 text-caption font-medium transition-colors',
+            'col-span-2 flex h-10 items-center justify-center gap-1.5 rounded-btn border px-3 text-caption font-semibold transition-colors',
             appointment
               ? 'border-gold/40 bg-gold/10 text-gold'
               : 'border-line bg-bg-elevated text-text-primary hover:border-gold/40',

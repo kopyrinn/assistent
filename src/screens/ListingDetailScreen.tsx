@@ -1,4 +1,4 @@
-import { Phone, Route, CalendarPlus, Bookmark, Sparkles, HelpCircle } from 'lucide-react';
+import { Phone, ExternalLink, CalendarPlus, Bookmark, Sparkles, HelpCircle } from 'lucide-react';
 import { listings } from '../data/mockData';
 import { useNav } from '../nav';
 import { useFavorites } from '../favorites';
@@ -63,6 +63,15 @@ export function ListingDetailScreen({ id }: { id: string }) {
             <span>·</span>
             <span>{listing.distanceCity}</span>
           </div>
+          <a
+            href={listing.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 inline-flex items-center gap-2 rounded-btn border border-line bg-bg-elevated px-3.5 py-2 text-caption font-semibold text-text-primary transition-colors hover:border-gold/40 hover:text-gold"
+          >
+            <ExternalLink className="h-4 w-4" />
+            Открыть объявление на {listing.source === 'krisha' ? 'Krisha.kz' : 'OLX.kz'}
+          </a>
         </div>
 
         {/* AI verdict */}
@@ -162,7 +171,11 @@ export function ListingDetailScreen({ id }: { id: string }) {
       <div className="glass-strong sticky bottom-0 z-30 mt-6 border-t border-line px-4 py-3 pb-4">
         <div className="grid grid-cols-4 gap-2">
           <ActionBtn icon={Phone} label="Позвонить" primary />
-          <ActionBtn icon={Route} label="Маршрут" />
+          <ActionLink
+            href={listing.sourceUrl}
+            icon={ExternalLink}
+            label={listing.source === 'krisha' ? 'Krisha' : 'OLX'}
+          />
           <ActionBtn
             icon={CalendarPlus}
             label={appointment ? 'Назначено' : 'Назначить звонок'}
@@ -217,5 +230,27 @@ function ActionBtn({
       <Icon className="h-4 w-4" fill={active ? 'currentColor' : 'none'} />
       {label}
     </button>
+  );
+}
+
+function ActionLink({
+  href,
+  icon: Icon,
+  label,
+}: {
+  href: string;
+  icon: typeof ExternalLink;
+  label: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="flex flex-col items-center gap-1 rounded-btn border border-line bg-bg-elevated py-2 text-[11px] font-medium text-text-primary transition-all hover:border-gold/40 active:scale-95"
+    >
+      <Icon className="h-4 w-4" />
+      {label}
+    </a>
   );
 }
