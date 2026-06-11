@@ -1,0 +1,57 @@
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+*.log
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Documentation and local notes
+*.md
+*.mdx
+
+# Local assistant and agent configuration
+.claude/
+.codex/
+.cursor/
+.windsurf/
+.continue/
+.aider*
+.ai/
+.agent/
+.agents/
+.llm/
+.gemini/
+.roo/
+.kilocode/
+.mcp/
+.mcp.json
+mcp.json
+CLAUDE*
+CODEX*
+AGENTS*
+GEMINI*
+copilot-instructions*
+
+# Prompt, chat, transcript, and agent artifacts
+*.prompt
+*.prompts
+*.chat
+*.conversation
+*.transcript
+*.instructions
+*.rules
+prompt*/
+prompts/
+chats/
+transcripts/
